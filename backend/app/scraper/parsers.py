@@ -7,7 +7,9 @@ def clean_price(price_str: Optional[str]) -> Optional[float]:
     if not price_str:
         return None
     # Remove currency symbols (₹, $, £, €, commas, non-breaking spaces)
-    cleaned = re.sub(r"[^\d.]", "", price_str.replace(",", "").strip())
+    # Strip zero-width non-breaking spaces (\u200b, \u00a0) and non-numeric characters
+    cleaned_input = price_str.replace(",", "").replace("\u00a0", "").replace("\u200b", "").strip()
+    cleaned = re.sub(r"[^\d.]", "", cleaned_input)
     # Handle multiple decimals if any
     parts = cleaned.split(".")
     if len(parts) > 2:
