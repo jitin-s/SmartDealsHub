@@ -236,3 +236,16 @@ def parse_flipkart_search_html(html: str) -> Optional[Dict[str, Any]]:
                     }
                 p = p.parent
     return None
+
+def normalize_currency_symbol(raw_symbol_or_code: str) -> str:
+    """Normalize regional currency symbols to ISO 4217 standard codes."""
+    mapping = {
+        "₹": "INR", "rs": "INR", "inr": "INR",
+        "$": "USD", "usd": "USD",
+        "€": "EUR", "eur": "EUR",
+        "£": "GBP", "gbp": "GBP",
+        "c$": "CAD", "cad": "CAD",
+        "a$": "AUD", "aud": "AUD"
+    }
+    cleaned = raw_symbol_or_code.strip().lower()
+    return mapping.get(cleaned, "USD")
