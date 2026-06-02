@@ -54,6 +54,8 @@ def parse_amazon_html(html: str, url: str = "") -> Dict[str, Any]:
             "#priceblock_ourprice",
             "#priceblock_dealprice",
             ".a-price .a-offscreen",
+            "#corePriceDisplay_mobile_feature_div .a-price .a-offscreen",
+            "#sns-base-price",
         ]:
             el = soup.select_one(sel)
             if el:
