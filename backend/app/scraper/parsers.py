@@ -253,3 +253,15 @@ def normalize_currency_symbol(raw_symbol_or_code: str) -> str:
     }
     cleaned = raw_symbol_or_code.strip().lower()
     return mapping.get(cleaned, "USD")
+
+def calculate_discount_metrics(original_mrp: float, deal_price: float) -> dict:
+    """Computes exact savings absolute delta and discount percentage."""
+    if not original_mrp or not deal_price or original_mrp <= 0:
+        return {"savings_delta": 0.0, "discount_pct": 0.0, "is_deal": False}
+    savings = max(0.0, round(original_mrp - deal_price, 2))
+    discount_pct = round((savings / original_mrp) * 100.0, 1)
+    return {
+        "savings_delta": savings,
+        "discount_pct": discount_pct,
+        "is_deal": discount_pct >= 10.0
+    }
