@@ -23,3 +23,15 @@ class TestPriceNormalization(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+def test_calculate_discount_metrics(self):
+        from app.scraper.parsers import calculate_discount_metrics
+        res = calculate_discount_metrics(1000.0, 750.0)
+        self.assertEqual(res["savings_delta"], 250.0)
+        self.assertEqual(res["discount_pct"], 25.0)
+        self.assertTrue(res["is_deal"])
+
+        no_discount = calculate_discount_metrics(500.0, 500.0)
+        self.assertEqual(no_discount["savings_delta"], 0.0)
+        self.assertEqual(no_discount["discount_pct"], 0.0)
+        self.assertFalse(no_discount["is_deal"])
