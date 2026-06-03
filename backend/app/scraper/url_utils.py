@@ -47,7 +47,11 @@ def extract_flipkart_pid(url_or_str: str) -> str:
     if match:
         return match.group(1)
     
-    # Check for direct PID code
+    # Extended pattern for Flipkart product listing and short URLs
+    short_match = re.search(r"dl\.flipkart\.com/s/([a-zA-Z0-9]+)", url_or_str)
+    if short_match:
+        return short_match.group(1)
+
     direct_match = re.match(r"^[A-Z0-9]{16}$", url_or_str.strip().upper())
     if direct_match:
         return direct_match.group(0)
