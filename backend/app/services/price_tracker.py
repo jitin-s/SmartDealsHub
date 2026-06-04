@@ -38,3 +38,32 @@ def evaluate_price_drop(
         "hit_threshold": hit_threshold,
         "reasons": reasons
     }
+
+def compute_historical_extremes(price_history: List[float]) -> Dict[str, Any]:
+    """
+    Computes all-time lowest, highest, average, and price volatility
+    from a sequence of recorded prices.
+    """
+    valid_prices = [p for p in price_history if p > 0]
+    if not valid_prices:
+        return {
+            "lowest": 0.0,
+            "highest": 0.0,
+            "average": 0.0,
+            "is_lowest_ever": False,
+            "record_count": 0
+        }
+
+    lowest = min(valid_prices)
+    highest = max(valid_prices)
+    avg = round(sum(valid_prices) / len(valid_prices), 2)
+    latest = valid_prices[-1]
+
+    return {
+        "lowest": lowest,
+        "highest": highest,
+        "average": avg,
+        "is_lowest_ever": latest <= lowest,
+        "discount_from_peak": round(((highest - latest) / highest) * 100.0, 1) if highest > 0 else 0.0,
+        "record_count": len(valid_prices)
+    }
