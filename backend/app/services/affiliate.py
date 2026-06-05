@@ -17,7 +17,7 @@ def sanitize_url(url: str) -> str:
     parsed = urlparse(url)
     clean_qs = parse_qs(parsed.query)
     # Strip unnecessary third-party click identifiers
-    keys_to_remove = ["fbclid", "gclid", "msclkid", "_ga", "ref_", "ref_src"]
+    keys_to_remove = ["fbclid", "gclid", "msclkid", "_ga", "ref_", "ref_src", "ascsubtag", "camp", "creative"]
     for k in keys_to_remove:
         clean_qs.pop(k, None)
     
