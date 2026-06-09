@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     
     # Scheduler
     PRICE_CHECK_INTERVAL_MINUTES: int = 30
+    CACHE_TTL_DEALS_SECONDS: int = 900
+    CACHE_TTL_HISTORY_SECONDS: int = 3600
     
     # Allowed CORS Origins
     CORS_ORIGINS: list[str] = ["*"]
