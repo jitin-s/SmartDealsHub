@@ -7,6 +7,7 @@ from datetime import datetime, timedelta, timezone
 
 from app.db.database import get_db
 from app.db.models import Product, PriceHistory
+from app.core.cache import deal_cache
 from app.scraper.engine import scraper_engine
 
 router = APIRouter()
