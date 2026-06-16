@@ -482,7 +482,8 @@ export const ShoppingHub: React.FC<Props> = ({ countryCode, currencySymbol, onAl
                     />
                   </div>
 
-                  <span className="inline-block px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[11px] font-bold mb-2">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 text-[11px] font-extrabold tracking-wide mb-2 shadow-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     {deal.deal_badge}
                   </span>
 
