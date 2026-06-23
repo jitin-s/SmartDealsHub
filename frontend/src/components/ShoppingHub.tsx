@@ -14,6 +14,8 @@ import {
 } from 'lucide-react';
 import { type Product, scrapeProduct, fetchProducts, fetchProductHistory, fetchLootDeals } from '../services/api';
 import { PriceChart } from './PriceChart';
+import { CategoryFilter, type CategoryType } from './CategoryFilter';
+import { SortToggle, type SortOption } from './SortToggle';
 import { AlertsModal } from './AlertsModal';
 
 interface Props {
