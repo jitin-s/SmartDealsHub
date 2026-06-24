@@ -31,6 +31,8 @@ export const ShoppingHub: React.FC<Props> = ({ countryCode, currencySymbol, onAl
   const [historyData, setHistoryData] = useState<any[]>([]);
   const [lootDeals, setLootDeals] = useState<any[]>([]);
   const [isAlertModalOpen, setIsAlertModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>('All');
+  const [currentSort, setCurrentSort] = useState<SortOption>('discount_desc');
 
   // Quick preset sample queries for 1-click test
   const quickPicks = [
