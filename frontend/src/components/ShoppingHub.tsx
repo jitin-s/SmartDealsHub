@@ -454,7 +454,7 @@ export const ShoppingHub: React.FC<Props> = ({ countryCode, currencySymbol, onAl
       {/* Curated Daily "Loot Deals" Feed */}
       {lootDeals && lootDeals.length > 0 && (
         <div className="mt-12">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
             <div>
               <h3 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                 <span>🔥</span> Daily "Loot Deals" Radar
@@ -462,6 +462,10 @@ export const ShoppingHub: React.FC<Props> = ({ countryCode, currencySymbol, onAl
               <p className="text-xs text-slate-400 mt-1">
                 Products currently at 15%+ discounts across Amazon & Flipkart
               </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <CategoryFilter selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} />
+              <SortToggle currentSort={currentSort} onSortChange={setCurrentSort} />
             </div>
           </div>
 
