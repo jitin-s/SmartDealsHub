@@ -265,3 +265,14 @@ def calculate_discount_metrics(original_mrp: float, deal_price: float) -> dict:
         "discount_pct": discount_pct,
         "is_deal": discount_pct >= 10.0
     }
+
+def is_bot_challenge_page(html_text: str) -> bool:
+    """Detects Amazon and Flipkart CAPTCHA challenge pages."""
+    text_lower = html_text.lower()
+    signals = [
+        "enter the characters you see below",
+        "type the characters you see in this image",
+        "api-services-support@amazon.com",
+        "something went wrong. please try again"
+    ]
+    return any(sig in text_lower for sig in signals)
