@@ -35,3 +35,10 @@ def test_calculate_discount_metrics(self):
         self.assertEqual(no_discount["savings_delta"], 0.0)
         self.assertEqual(no_discount["discount_pct"], 0.0)
         self.assertFalse(no_discount["is_deal"])
+
+def test_bot_challenge_detection(self):
+        from app.scraper.parsers import is_bot_challenge_page
+        captcha_html = "<html><body>Enter the characters you see below</body></html>"
+        self.assertTrue(is_bot_challenge_page(captcha_html))
+        normal_html = "<html><body>Product Title: Sony WH-1000XM5</body></html>"
+        self.assertFalse(is_bot_challenge_page(normal_html))
