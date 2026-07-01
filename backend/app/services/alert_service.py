@@ -25,7 +25,7 @@ def generate_price_drop_html(
         <meta charset="utf-8">
         <style>
             body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f3f4f6; margin: 0; padding: 20px; }}
-            .card {{ max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e5e7eb; }}
+            .card {{ max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 16px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border: 1px solid #e5e7eb; }}
             .header {{ background: linear-gradient(135deg, #2563eb, #1d4ed8); padding: 24px; text-align: center; color: white; }}
             .header h1 {{ margin: 0; font-size: 24px; font-weight: 700; }}
             .header p {{ margin: 8px 0 0 0; opacity: 0.9; font-size: 14px; }}
