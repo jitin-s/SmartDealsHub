@@ -38,7 +38,7 @@ def generate_price_drop_html(
             .price-row {{ display: flex; align-items: baseline; gap: 12px; margin: 20px 0; }}
             .new-price {{ font-size: 32px; font-weight: 800; color: #16a34a; }}
             .old-price {{ font-size: 18px; color: #6b7280; text-decoration: line-through; }}
-            .save-pill {{ background: #dcfce7; color: #15803d; padding: 4px 8px; border-radius: 6px; font-weight: 700; font-size: 14px; }}
+            .save-pill {{ background: #dcfce7; color: #15803d; padding: 6px 12px; border-radius: 9999px; font-weight: 800; font-size: 14px; display: inline-block; }}
             .cta-btn {{ display: block; text-align: center; background: #2563eb; color: #ffffff !important; padding: 14px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px; margin: 24px 0 12px 0; }}
             .cta-btn:hover {{ background: #1d4ed8; }}
             .footer {{ background: #f9fafb; padding: 16px; text-align: center; font-size: 12px; color: #9ca3af; border-top: 1px solid #e5e7eb; }}
