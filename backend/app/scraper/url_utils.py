@@ -77,3 +77,8 @@ def clean_flipkart_url(url: str) -> str:
     if pid:
         return f"https://www.flipkart.com{clean_path}?pid={pid}"
     return f"https://www.flipkart.com{clean_path}"
+
+def extract_croma_product_id(url: str) -> str:
+    """Extracts SKU or PID from Croma product URLs."""
+    match = re.search(r"/p/(\d+)", url)
+    return match.group(1) if match else ""
