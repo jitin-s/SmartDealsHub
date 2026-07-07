@@ -33,6 +33,10 @@ def parse_amazon_html(html: str, url: str = "") -> Dict[str, Any]:
             title = og_title["content"].split(":")[0].strip()
     if not title and soup.title:
         title = soup.title.get_text(strip=True).replace("Amazon.in :", "").replace("Amazon.com :", "").strip()
+    # Strip common site suffixes from title
+    for suffix in ["| Amazon", "- Amazon.in", "Online at Best Prices"]:
+        if suffix in title:
+            title = title.split(suffix)[0].strip()
 
     # 2. Current Price (checking .a-price-whole first as it is the most accurate live selector)
     current_price = None
