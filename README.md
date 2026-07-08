@@ -155,3 +155,12 @@ EMAIL_FROM=alerts@smartdealshub.com
 EMAIL_FROM_NAME="SmartDeals Hub"
 ```
 2. Restart the backend. All price drops will now be sent straight to real inboxes!
+
+### 📊 Supported Marketplace Providers & Integrations
+
+| Marketplace | Region | Direct URL Scraping | Keyword Search | Prime/Assured Badges | Affiliate Attribution |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **Amazon** | IN, US, UK | ✅ Yes | ✅ Yes | ✅ Yes (`.a-icon-prime`) | ✅ Auto-tagged (`smartdeals-21`) |
+| **Flipkart** | IN | ✅ Yes | ✅ Yes | ✅ Yes (F-Assured) | ✅ Auto-tagged (`affid`) |
+| **Croma Retail** | IN | ✅ Yes | ✅ Yes | ➖ N/A | ✅ Direct & UTM |
+| **Walmart** | US, CA | ✅ Partial | ✅ Yes | ➖ Walmart+ | ✅ Direct & UTM |
