@@ -164,3 +164,8 @@ EMAIL_FROM_NAME="SmartDeals Hub"
 | **Flipkart** | IN | ✅ Yes | ✅ Yes | ✅ Yes (F-Assured) | ✅ Auto-tagged (`affid`) |
 | **Croma Retail** | IN | ✅ Yes | ✅ Yes | ➖ N/A | ✅ Direct & UTM |
 | **Walmart** | US, CA | ✅ Partial | ✅ Yes | ➖ Walmart+ | ✅ Direct & UTM |
+
+### ⏰ Background Price Sync & Cron Architecture
+- **Interval**: Automated price scanning executes every 30 minutes via `APScheduler`.
+- **Throttling**: Randomized inter-request delays (0.8s - 2.5s) ensure rate-limit compliance.
+- **Deduplication**: In-memory TTL cache prevents duplicate simultaneous scraper queries.
