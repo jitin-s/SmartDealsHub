@@ -67,3 +67,11 @@ def compute_historical_extremes(price_history: List[float]) -> Dict[str, Any]:
         "discount_from_peak": round(((highest - latest) / highest) * 100.0, 1) if highest > 0 else 0.0,
         "record_count": len(valid_prices)
     }
+
+def calculate_price_meter_score(current: float, lowest: float, highest: float) -> int:
+    """Computes BuyHatke-style 0-100 price meter score (100 = best steal price)."""
+    if highest <= lowest or current <= 0:
+        return 75
+    # Normalize between lowest (100) and highest (0)
+    ratio = (highest - current) / (highest - lowest)
+    return max(0, min(100, int(ratio * 100)))
