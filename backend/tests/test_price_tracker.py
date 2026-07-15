@@ -28,3 +28,12 @@ class TestPriceTracker(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+def test_price_meter_score(self):
+        from app.services.price_tracker import calculate_price_meter_score
+        # Current equals lowest -> 100
+        self.assertEqual(calculate_price_meter_score(100.0, 100.0, 200.0), 100)
+        # Current equals highest -> 0
+        self.assertEqual(calculate_price_meter_score(200.0, 100.0, 200.0), 0)
+        # Midpoint -> 50
+        self.assertEqual(calculate_price_meter_score(150.0, 100.0, 200.0), 50)
