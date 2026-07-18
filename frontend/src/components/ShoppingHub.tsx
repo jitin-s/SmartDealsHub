@@ -474,7 +474,7 @@ export const ShoppingHub: React.FC<Props> = ({ countryCode, currencySymbol, onAl
               <div
                 key={deal.id}
                 onClick={() => handleSearch(deal.title)}
-                className="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-slate-700 rounded-2xl p-4 transition-all duration-200 cursor-pointer group shadow-lg flex flex-col justify-between"
+                className="bg-slate-900 hover:bg-slate-850 border border-slate-800 hover:border-blue-500/50 rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 cursor-pointer group shadow-lg hover:shadow-blue-500/10 flex flex-col justify-between"
               >
                 <div>
                   <div className="w-full h-40 rounded-xl bg-white p-3 flex items-center justify-center mb-3 overflow-hidden">
