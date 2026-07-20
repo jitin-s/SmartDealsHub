@@ -271,3 +271,11 @@ class DomainService:
         return TLD_HISTORICAL_TRENDS
 
 domain_service = DomainService()
+
+def sort_domain_pricing(items: list, sort_by: str = "reg_price") -> list:
+    """Sorts domain registrar prices by registration or renewal price."""
+    reverse = False
+    if sort_by.endswith("_desc"):
+        sort_by = sort_by.replace("_desc", "")
+        reverse = True
+    return sorted(items, key=lambda x: getattr(x, sort_by, 0), reverse=reverse)
