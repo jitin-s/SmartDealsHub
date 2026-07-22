@@ -130,7 +130,13 @@ async def lifespan(app: FastAPI):
     # Stop APScheduler
     stop_scheduler()
 
-app = FastAPI(
+tags_metadata = [
+    {"name": "Shopping & Price Tracker", "description": "Amazon, Flipkart, and Croma deals scraping and alerts."},
+    {"name": "Domains", "description": "Registrar pricing, renewal trap scores, and WHOIS transparency."},
+    {"name": "Services", "description": "AI APIs, Cloud VPS, and VPN pricing calculators."}
+]
+
+app = FastAPI(openapi_tags=tags_metadata,
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
     lifespan=lifespan
