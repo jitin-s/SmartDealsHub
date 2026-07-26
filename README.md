@@ -169,3 +169,10 @@ EMAIL_FROM_NAME="SmartDeals Hub"
 - **Interval**: Automated price scanning executes every 30 minutes via `APScheduler`.
 - **Throttling**: Randomized inter-request delays (0.8s - 2.5s) ensure rate-limit compliance.
 - **Deduplication**: In-memory TTL cache prevents duplicate simultaneous scraper queries.
+
+### 🧪 Running the Test Suite
+Execute the unit test suite across parsers, tracker algorithms, and affiliate link sanitizers:
+```bash
+cd backend
+python -m unittest discover -s tests -p "test_*.py"
+```
