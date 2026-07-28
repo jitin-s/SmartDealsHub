@@ -82,6 +82,8 @@ def generate_price_drop_html(
     """
 
 # In-memory delivery log for instant UI review and verification
+RECENTLY_ALERTED_KEYS = set()
+
 SENT_ALERTS_LOG = []
 
 class AlertService:
