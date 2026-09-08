@@ -145,8 +145,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount API routes
+# Mount API routes (support both /api and direct root paths for serverless resilience)
 app.include_router(api_router, prefix=settings.API_V1_STR)
+app.include_router(api_router)
 
 @app.get("/")
 async def root():

@@ -5,7 +5,7 @@
   "description": "Multi-Platform Price Intelligence and Deal Tracker",
   "scripts": {
     "dev": "python run.py",
-    "build": "cd frontend && npm install && npm run build",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
     "start": "python run.py"
   },
   "keywords": ["amazon", "flipkart", "price-tracker", "web-scraper", "buyhatke", "domain-comparison"],

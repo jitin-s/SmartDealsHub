@@ -45,6 +45,10 @@ async def check_price_alerts_job():
             print(f"[Scheduler] Error running price check job: {e}")
 
 def start_scheduler():
+    import os
+    if os.getenv("VERCEL"):
+        print("[Scheduler] Running in Vercel Serverless environment - skipping APScheduler background thread.")
+        return
     if not scheduler.running:
         scheduler.add_job(check_price_alerts_job, "interval", minutes=30, id="price_check_job")
         scheduler.start()
