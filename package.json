@@ -1,0 +1,14 @@
+{
+  "name": "smartdeals-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-Platform Price Intelligence and Deal Tracker",
+  "scripts": {
+    "dev": "python run.py",
+    "build": "cd frontend && npm install && npm run build",
+    "start": "python run.py"
+  },
+  "keywords": ["amazon", "flipkart", "price-tracker", "web-scraper", "buyhatke", "domain-comparison"],
+  "author": "SmartDeals Hub Team",
+  "license": "MIT"
+}
