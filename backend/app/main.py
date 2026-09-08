@@ -1,6 +1,6 @@
 import json
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime, timedelta, timezone
 
@@ -145,11 +145,58 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+class VercelPathFixMiddleware:
+    """
+    Pure ASGI middleware that intercepts Vercel internal rewrites (/api/index.py)
+    and restores the real target path (from __path__, x-now-route-matches, or x-matched-path)
+    so FastAPI routes all requests with 100% accuracy.
+    """
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope.get("type") in ("http", "websocket"):
+            path = scope.get("path", "")
+            if path in ("/api/index.py", "/index.py", "/api/index"):
+                raw_target = None
+                query_string = scope.get("query_string", b"").decode("utf-8")
+                if query_string:
+                    import urllib.parse
+                    params = dict(urllib.parse.parse_qsl(query_string))
+                    raw_target = params.get("__path__")
+
+                if not raw_target:
+                    headers = dict(scope.get("headers", []))
+                    route_matches = headers.get(b"x-now-route-matches", b"").decode("utf-8")
+                    if route_matches:
+                        import urllib.parse
+                        parts = dict(urllib.parse.parse_qsl(route_matches))
+                        raw_target = parts.get("1")
+
+                if not raw_target:
+                    headers = dict(scope.get("headers", []))
+                    matched = headers.get(b"x-matched-path", b"").decode("utf-8")
+                    if matched and matched not in ("/api/index.py", "/index.py", "/api/index"):
+                        raw_target = matched
+
+                if raw_target:
+                    target_path = raw_target if raw_target.startswith("/") else f"/{raw_target}"
+                    if not target_path.startswith("/api"):
+                        target_path = f"/api{target_path}"
+                    scope["path"] = target_path
+                    scope["raw_path"] = target_path.encode("utf-8")
+
+        await self.app(scope, receive, send)
+
+app.add_middleware(VercelPathFixMiddleware)
+
 # Mount API routes (support both /api and direct root paths for serverless resilience)
 app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router)
 
 @app.get("/")
+@app.get("/api/index.py")
+@app.get("/index.py")
 async def root():
     return {
         "service": settings.PROJECT_NAME,
