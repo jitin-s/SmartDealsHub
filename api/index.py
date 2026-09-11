@@ -13,14 +13,23 @@ for p in (current_dir, backend_dir, root_dir):
 try:
     from app.main import app
 except Exception as e:
-    print(f"[Vercel Function Error] Failed to import app: {e}")
-    # Minimal fallback app to diagnose if ever needed
+    import traceback
+    err_trace = traceback.format_exc()
+    print(f"[Vercel Function Error] Failed to import app:\n{err_trace}")
     from fastapi import FastAPI
-    app = FastAPI(title="Diagnosis Mode")
-    @app.get("/api/health")
-    @app.get("/")
-    def health():
-        return {"status": "error", "message": f"App import error: {e}"}
+    from fastapi.responses import JSONResponse
 
-handler = app
+    app = FastAPI(title="Diagnosis Mode")
+
+    @app.api_route("/{full_path:path}", methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"])
+    async def fallback_route(full_path: str):
+        return JSONResponse(
+            status_code=500,
+            content={
+                "status": "serverless_initialization_error",
+                "error": str(e),
+                "trace": err_trace
+            }
+        )
+
 

@@ -163,35 +163,47 @@ class VercelPathFixMiddleware:
 
     async def __call__(self, scope, receive, send):
         if scope.get("type") in ("http", "websocket"):
-            path = scope.get("path", "")
-            if path in ("/api/index.py", "/index.py", "/api/index"):
-                raw_target = None
-                query_string = scope.get("query_string", b"").decode("utf-8")
-                if query_string:
-                    import urllib.parse
-                    params = dict(urllib.parse.parse_qsl(query_string))
-                    raw_target = params.get("__path__")
-
-                if not raw_target:
-                    headers = dict(scope.get("headers", []))
-                    route_matches = headers.get(b"x-now-route-matches", b"").decode("utf-8")
-                    if route_matches:
+            try:
+                path = scope.get("path", "")
+                if path in ("/api/index.py", "/index.py", "/api/index"):
+                    raw_target = None
+                    query_string = scope.get("query_string", b"").decode("utf-8", errors="ignore")
+                    if query_string:
                         import urllib.parse
-                        parts = dict(urllib.parse.parse_qsl(route_matches))
-                        raw_target = parts.get("1")
+                        params = dict(urllib.parse.parse_qsl(query_string))
+                        raw_target = params.get("__path__")
 
-                if not raw_target:
-                    headers = dict(scope.get("headers", []))
-                    matched = headers.get(b"x-matched-path", b"").decode("utf-8")
-                    if matched and matched not in ("/api/index.py", "/index.py", "/api/index"):
-                        raw_target = matched
+                    if not raw_target:
+                        headers = dict(scope.get("headers", []))
+                        route_matches = headers.get(b"x-now-route-matches", b"").decode("utf-8", errors="ignore")
+                        if route_matches:
+                            import urllib.parse
+                            parts = dict(urllib.parse.parse_qsl(route_matches))
+                            raw_target = parts.get("1")
 
-                if raw_target:
-                    target_path = raw_target if raw_target.startswith("/") else f"/{raw_target}"
-                    if not target_path.startswith("/api"):
-                        target_path = f"/api{target_path}"
-                    scope["path"] = target_path
-                    scope["raw_path"] = target_path.encode("utf-8")
+                    if not raw_target:
+                        headers = dict(scope.get("headers", []))
+                        matched = (
+                            headers.get(b"x-matched-path", b"").decode("utf-8", errors="ignore") or
+                            headers.get(b"x-forwarded-uri", b"").decode("utf-8", errors="ignore") or
+                            headers.get(b"x-original-url", b"").decode("utf-8", errors="ignore")
+                        )
+                        if matched and matched not in ("/api/index.py", "/index.py", "/api/index"):
+                            raw_target = matched
+
+                    if raw_target:
+                        if "?" in raw_target:
+                            raw_path_only, qs = raw_target.split("?", 1)
+                            if not scope.get("query_string"):
+                                scope["query_string"] = qs.encode("utf-8")
+                            raw_target = raw_path_only
+                        target_path = raw_target if raw_target.startswith("/") else f"/{raw_target}"
+                        if not target_path.startswith("/api"):
+                            target_path = f"/api{target_path}"
+                        scope["path"] = target_path
+                        scope["raw_path"] = target_path.encode("utf-8")
+            except Exception as e:
+                print(f"[Middleware Error] {e}")
 
         await self.app(scope, receive, send)
 
