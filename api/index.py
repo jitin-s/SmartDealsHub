@@ -5,7 +5,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.dirname(current_dir)
 backend_dir = os.path.join(root_dir, "backend")
 
-# Ensure both api/ and backend/ are in sys.path
+# Ensure both api/ and backend/ are in sys.path and in the correct order (api/ first, then backend/)
 for p in (current_dir, backend_dir, root_dir):
     if os.path.exists(p) and p not in sys.path:
         sys.path.insert(0, p)
