@@ -8,8 +8,7 @@ A smart shopping assistant, price tracker, and digital service intelligence plat
 
 ### 1. 🛒 Multi-Store E-Commerce Scraper (BuyHatke Style)
 - **Direct Link or Search**: Paste any Amazon or Flipkart product URL, or search for gadgets (e.g. *Sony WH-1000XM5, iPhone 16, Mac Mini M4, S24 Ultra*).
-- **Cross-Platform Comparison**: Side-by-side comparison across Amazon India, Flipkart, and Croma Retail with the cheapest store highlighted.
-- **BuyHatke "Price Meter" Verdict**:
+- **Cross-Platform Comparison**: Side-by-side comparison across Amazon India, Flipkart, and Croma Retail with the cheapest store highlighted- **BuyHatke "Price Meter" Verdict**:
   - 🟢 **Great Price / Steal Deal!** (Within 5% of all-time low)
   - 🟡 **Fair / Average Price**
   - 🔴 **Overpriced / Wait for Drop**
