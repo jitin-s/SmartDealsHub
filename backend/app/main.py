@@ -214,6 +214,8 @@ app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router)
 
 @app.get("/")
+@app.get("/api")
+@app.get("/api/")
 @app.get("/api/index.py")
 @app.get("/index.py")
 async def root():
@@ -224,3 +226,13 @@ async def root():
         "docs": "/docs",
         "api_v1": settings.API_V1_STR
     }
+
+@app.get("/health")
+@app.get("/api/health")
+async def health_check():
+    return {
+        "status": "healthy",
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION
+    }
+

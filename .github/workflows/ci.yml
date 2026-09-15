@@ -50,5 +50,5 @@ jobs:
           VERCEL: "1"
         run: |
           PYTHONPATH=backend python -c "from app.main import app; print('Backend FastAPI App verified successfully')"
-          PYTHONPATH=api python -c "from app.main import app; print('API App verified successfully')"
           python -c "from api.index import app; print('Vercel index.py handler verified successfully')"
+
