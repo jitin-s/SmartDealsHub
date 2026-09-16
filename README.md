@@ -99,7 +99,7 @@ SmartDeals Hub resolves this automatically:
 - All product image tags in the React frontend enforce `referrerPolicy="no-referrer"` alongside an automatic fallback handler.
 - Real selling site CDN images load smoothly and crisply on both local environments and production deployments!
 
----
+----
 
 ## 🐙 Push to GitHub
 
