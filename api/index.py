@@ -6,6 +6,7 @@ root_dir = os.path.dirname(current_dir)
 
 # Ensure backend directory is in sys.path across all Vercel/Lambda filesystem layouts
 candidate_paths = [
+    os.path.join(current_dir, "_app"),
     os.path.join(root_dir, "backend"),
     os.path.join(current_dir, "backend"),
     os.path.join(current_dir, "..", "backend"),
