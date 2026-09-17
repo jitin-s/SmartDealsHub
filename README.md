@@ -101,7 +101,7 @@ SmartDeals Hub resolves this automatically:
 
 ----
 
-## 🐙 Push to GitHub
+### 🐙 Push to GitHub
 
 To push this project to your GitHub account:
 
