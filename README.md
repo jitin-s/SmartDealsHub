@@ -142,7 +142,7 @@ The project is fully pre-configured for **Vercel** with a unified monorepo setup
 
 ---
 
-## ⚙️ Email (SMTP) Configuration (Optional)
+#### ⚙️ Email (SMTP) Configuration (Optional)
 By default, email alerts are logged locally for instant testing and auditing in the **Watchlist & Alerts** tab. To deliver actual emails to user inboxes:
 1. Create a `backend/.env` file:
 ```env
