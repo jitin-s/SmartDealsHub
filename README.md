@@ -1,4 +1,4 @@
-# ⚡ SmartDeals Hub: Multi-Platform Price Intelligence & Deal Tracker
+# ⚡ SmartDeals Hub: Multi-Platform Price Intelligence & Deal Tracker (open source)
 
 A smart shopping assistant, price tracker, and digital service intelligence platform built with **FastAPI**, **SQLAlchemy**, and **React (Vite + TypeScript + Tailwind CSS)**.
 
