@@ -106,7 +106,7 @@ SmartDeals Hub resolves this automatically:
 To push this project to your GitHub account:
 
 ```bash
-# 1. Create a new repository on GitHub (e.g. "smartdeals-hub" or "amazon-web-scraper")
+# 1. Create a new repository on GitHub (e.g. "smartdeals-hub")
 
 # 2. Add your GitHub repository as the remote origin
 git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPO_NAME>.git
