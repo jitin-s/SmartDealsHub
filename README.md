@@ -4,7 +4,7 @@ A smart shopping assistant, price tracker, and digital service intelligence plat
 
 ----
 
-## 🌟 Key Features
+### 🌟 Key Features
 
 ## 1. 🛒 Multi-Store E-Commerce Scraper (BuyHatke Style)
 - **Direct Link or Search**: Paste any Amazon or Flipkart product URL, or search for gadgets (e.g. *Sony WH-1000XM5, iPhone 16, Mac Mini M4, S24 Ultra*).
